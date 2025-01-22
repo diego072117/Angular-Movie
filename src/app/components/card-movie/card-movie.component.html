@@ -1,0 +1,7 @@
+<div
+  [routerLink]="['/movie', movie.id]"
+  class="movie"
+  [style.backgroundImage]="'url(http://image.tmdb.org/t/p/w500' + movie.poster_path + ')'"
+>
+  <h3>{{ movie.title }}</h3>
+</div>
