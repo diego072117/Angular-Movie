@@ -48,4 +48,13 @@ export class MovieService {
       },
     });
   }
+
+  //  Método para obtener las mejores calificadas
+  getTopRatedMovies(): Observable<any> {
+    return this.http.get(`${this.API_URL}/movie/top_rated`, {
+      params: {
+        api_key: this.API_KEY,
+      },
+    });
+  }
 }

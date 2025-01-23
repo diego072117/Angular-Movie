@@ -1,21 +1,13 @@
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold text-center mb-6">Películas Populares</h1>
-  
-    <!-- Swiper Container -->
-    <swiper-container
-      slides-per-view="7"
-      space-between="20"
-      navigation
-      pagination
-      class="block w-full"
-    >
-      <!-- Swiper Slide -->
-      <swiper-slide
-        *ngFor="let movie of moviesPopular"
-        class="flex justify-center"
-      >
-        <app-card-movie [movie]="movie"></app-card-movie>
-      </swiper-slide>
-    </swiper-container>
+<div class="bg-black min-h-screen text-white">
+  <!-- Películas populares -->
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-left mb-6">Películas Populares</h1>
+    <app-swiper-movies [movies]="moviesPopular"></app-swiper-movies>
   </div>
-  
+
+  <!-- Películas mejor calificadas -->
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-left mb-6">Mejores Calificadas</h1>
+    <app-swiper-movies [movies]="topRatedMovies"></app-swiper-movies>
+  </div>
+</div>
