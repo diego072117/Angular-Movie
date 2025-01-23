@@ -1,0 +1,8 @@
+<div class="relative">
+  <swiper-container slides-per-view="6" space-between="5" slides-per-group="5" navigation class="block w-full">
+    <!-- Swiper Slide -->
+    <swiper-slide *ngFor="let movie of movies" class="flex justify-center">
+      <app-card-movie [movie]="movie"></app-card-movie>
+    </swiper-slide>
+  </swiper-container>
+</div>
