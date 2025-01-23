@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,7 @@ import { CardMovieComponent } from '../../components/card-movie/card-movie.compo
   imports: [CommonModule, RouterModule, CardMovieComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeComponent implements OnInit {
   moviesPopular: any[] = [];
