@@ -15,9 +15,22 @@
   background-position: center;
 }
 
+.featured-movie::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  z-index: 1; 
+}
+
 .movie-info {
   padding: 2em;
   width: 50%; 
+  position: relative; /* Asegura que se coloque sobre el sombreado */
+  z-index: 2;
 }
 
 .movie-info h1 {
@@ -37,57 +50,56 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #facc15; /* Text yellow-500 */
+  color: #facc15; 
   font-weight: 600;
-  font-size: 1.125rem; /* Text-lg */
+  font-size: 1.125rem; 
 }
 
 .details .popularity {
-  color: #ef4444; /* Text red-500 */
+  color: #ef4444; 
   font-weight: 600;
-  font-size: 1.125rem; /* Text-lg */
+  font-size: 1.125rem; 
 }
 
 .buttons {
   display: flex;
-  gap: 1rem; /* Equivalente a space-x-4 */
+  gap: 1rem; 
 }
 
 .buttons .play {
-  padding: 0.75rem 1.5rem; /* px-6 py-3 */
-  background-color: #dc2626; /* bg-red-600 */
-  color: white;
+  padding: 0.75rem 1.5rem; 
+  background-color: #dc2626; 
   font-weight: 600;
-  border-radius: 0.5rem; /* Rounded-lg */
+  border-radius: 0.5rem; 
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .buttons .play:hover {
-  background-color: #b91c1c; /* hover:bg-red-700 */
+  background-color: #b91c1c; 
 }
 
 .buttons .trailer {
-  padding: 0.75rem 1.5rem; /* px-6 py-3 */
-  background-color: #e5e7eb; /* bg-gray-200 */
+  padding: 0.75rem 1.5rem; 
+  background-color: #e5e7eb; 
   color: black;
   font-weight: 600;
-  border-radius: 0.5rem; /* Rounded-lg */
+  border-radius: 0.5rem; 
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .buttons .trailer:hover {
-  background-color: #d1d5db; /* hover:bg-gray-300 */
+  background-color: #d1d5db; 
 }
 
 .loading-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 96px; /* Altura similar a la película destacada */
+  height: 96px; 
   background-color: black;
 }
 
