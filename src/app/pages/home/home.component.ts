@@ -3,11 +3,12 @@ import { MovieService } from '../../services/movie.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SwiperMoviesComponent } from '../../components/swiper-movies/swiper-movies.component';
+import { FeaturedMovieComponent } from '../../components/featured-movie/featured-movie.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, SwiperMoviesComponent],
+  imports: [CommonModule, RouterModule, SwiperMoviesComponent, FeaturedMovieComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -15,12 +16,16 @@ import { SwiperMoviesComponent } from '../../components/swiper-movies/swiper-mov
 export class HomeComponent implements OnInit {
   moviesPopular: any[] = [];
   topRatedMovies: any[] = [];
+  nowPlayingMovies: any[] = [];
+  popularTVShows: any[] = [];
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.getAllMovies();
     this.getTopRatedMovies();
+    this.getNowPlayingMovies();
+    this.getPopularTVShows();
   }
 
   // Llamar al servicio para obtener todas las películas
@@ -48,4 +53,31 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+
+  // Llamar al servicio para obtener las películas recientes
+  getNowPlayingMovies(): void {
+    this.movieService.getNowPlayingMovies().subscribe({
+      next: (data) => {
+        this.nowPlayingMovies = data.results;
+        console.log('Películas recientes:', data.results);
+      },
+      error: (err) => {
+        console.error('Error al obtener películas recientes:', err);
+      },
+    });
+  }
+
+  // Llamar al servicio para obtener las series populares
+  getPopularTVShows(): void {
+    this.movieService.getPopularTVShows().subscribe({
+      next: (data) => {
+        this.popularTVShows = data.results;
+        console.log('Series populares:', data.results);
+      },
+      error: (err) => {
+        console.error('Error al obtener series populares:', err);
+      },
+    });
+  }
+
 }
