@@ -1,0 +1,31 @@
+<div
+  class="featured-movie"
+  *ngIf="currentMovie"
+  [style.backgroundImage]="'url(http://image.tmdb.org/t/p/w1280' + currentMovie.backdrop_path + ')'"
+  style="object-fit: cover; object-position: center;"
+>
+  <!-- Información de la película -->
+  <div class="movie-info">
+    <h1>{{ currentMovie.title }}</h1>
+    <div class="details">
+      <span class="calification">
+        <mat-icon>star</mat-icon>{{ currentMovie.vote_average | number: '1.1-1' }}
+      </span>
+      <span class="popularity">
+        {{ currentMovie.popularity | number: '1.0-0' }}+ Streams
+      </span>
+    </div>
+    <div class="buttons">
+      <a class="play" [routerLink]="['/movie', currentMovie.id]">Play</a>
+      <a
+        class="trailer"
+        *ngIf="trailerUrl"
+        [href]="trailerUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Watch Trailer
+      </a>
+    </div>
+  </div>
+</div>

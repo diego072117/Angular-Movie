@@ -57,4 +57,23 @@ export class MovieService {
       },
     });
   }
+
+  // Método para obtener las películas recientes
+  getNowPlayingMovies(): Observable<any> {
+    return this.http.get(`${this.API_URL}/movie/now_playing`, {
+      params: {
+        api_key: this.API_KEY,
+      },
+    });
+  }
+
+  // Método para obtener las series populares
+  getPopularTVShows(): Observable<any> {
+    return this.http.get(`${this.API_URL}/tv/popular`, {
+      params: {
+        api_key: this.API_KEY,
+      },
+    });
+  }
+
 }

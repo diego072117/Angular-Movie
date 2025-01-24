@@ -13,4 +13,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 })
 export class SwiperMoviesComponent {
   @Input() movies: any[] = []; // Lista de películas
+  breakpoints = {
+    1024: { slidesPerView: 8, slidesPerGroup: 5 },
+    768: { slidesPerView: 4, slidesPerGroup: 2 },
+    640: { slidesPerView: 2, slidesPerGroup: 1 },
+  };
 }
