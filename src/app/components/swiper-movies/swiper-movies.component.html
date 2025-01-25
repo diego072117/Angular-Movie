@@ -1,23 +1,10 @@
 <div class="relative">
-  <swiper-container
-    [space-between]="5"
-    [slides-per-view]="'auto'"
-    [space-between]="20"
-    [slides-per-group]="1"
-    [loop]="true"
-    [free-mode]="false"
-    [allow-slide-next]="true"
-    [allow-slide-prev]="true"
-    [centered-slides]="false"
-    navigation
-    scrollbar
-    navigation
-    [breakpoints]="breakpoints"
-    class="block w-full"
-  >
+  <swiper-container [space-between]="5" [slides-per-view]="'auto'" [space-between]="20" [slides-per-group]="1"
+    [loop]="true" [free-mode]="false" [allow-slide-next]="true" [allow-slide-prev]="true" [centered-slides]="false"
+    navigation scrollbar navigation [breakpoints]="breakpoints" class="block w-full">
     <!-- Swiper Slide -->
     <swiper-slide *ngFor="let movie of movies" class="flex justify-center">
-      <app-card-movie [movie]="movie"></app-card-movie>
+      <app-card-movie [movie]="movie" (cardClick)="openMovieDetails($event)"></app-card-movie>
     </swiper-slide>
   </swiper-container>
 </div>

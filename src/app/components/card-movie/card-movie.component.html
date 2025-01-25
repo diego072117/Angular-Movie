@@ -1,9 +1,9 @@
 <div
-  [routerLink]="['/movie', movie.id]"
   class="relative w-52 h-72 bg-cover bg-center text-white flex items-end justify-center text-center rounded-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
   [style.backgroundImage]="movie.poster_path 
     ? 'url(http://image.tmdb.org/t/p/w500' + movie.poster_path + ')' 
     : 'url(https://www.shutterstock.com/image-vector/image-not-found-failure-network-260nw-2330163829.jpg)'"
+  (click)="onCardClick()"
 >
   <!-- Div para el título al hacer hover -->
   <div
