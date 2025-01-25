@@ -20,7 +20,6 @@ export class FeaturedMovieComponent implements OnInit, OnChanges {
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    console.log('Películas iniciales recibidas:', this.movies); // Verifica los datos recibidos
     if (this.movies.length > 0) {
       this.startMovieRotation();
     }
@@ -28,7 +27,7 @@ export class FeaturedMovieComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['movies'] && changes['movies'].currentValue.length > 0) {
-      console.log('Películas actualizadas:', changes['movies'].currentValue);
+      //console.log('Películas actualizadas:', changes['movies'].currentValue);
       this.currentMovieIndex = 0; // Reinicia el índice
       this.startMovieRotation(); // Reinicia la rotación
     }

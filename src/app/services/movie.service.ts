@@ -45,6 +45,7 @@ export class MovieService {
     return this.http.get(`${this.API_URL}/movie/${id}/videos`, {
       params: {
         api_key: this.API_KEY,
+        // language: 'es',
       },
     });
   }

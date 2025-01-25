@@ -1,7 +1,6 @@
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-2xl font-bold text-center mb-6 text-white">Buscar Películas</h1>
 
-  <!-- Input para ingresar la palabra clave -->
   <div class="flex justify-center items-center gap-4 mb-6">
     <input
       #searchInput
@@ -13,15 +12,17 @@
     />
   </div>
 
-  <!-- Mostrar mensaje de error -->
   <p *ngIf="error" class="text-red-500 text-center font-semibold mb-4">{{ error }}</p>
 
-  <!-- Mostrar resultados de la búsqueda -->
   <div *ngIf="movies.length; else noMovies" class="flex flex-wrap gap-5 justify-center">
-    <app-card-movie *ngFor="let movie of movies" [movie]="movie" class="flex-grow"></app-card-movie>
+    <app-card-movie
+      *ngFor="let movie of movies"
+      [movie]="movie"
+      (cardClick)="openMovieModal($event)"
+      class="flex-grow"
+    ></app-card-movie>
   </div>
 
-  <!-- Mostrar mensaje si no hay resultados -->
   <ng-template #noMovies>
     <p class="text-center text-gray-500 mt-6">No se encontraron películas para la búsqueda.</p>
   </ng-template>

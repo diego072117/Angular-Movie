@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog'; // Importa MatDialog
 import { MovieService } from '../../services/movie.service';
 import { CardMovieComponent } from '../../components/card-movie/card-movie.component';
+import { MovieDetailModalComponent } from '../../components/movie-detail-modal/movie-detail-modal.component'; // Importa el modal
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -17,15 +19,11 @@ export class SearchMovieComponent {
   searchKeyword: string = '';
   movies: any[] = [];
   error: string | null = null;
-  private searchSubject: Subject<string> = new Subject(); // Subject para manejar cambios en el input
+  private searchSubject: Subject<string> = new Subject();
 
-  constructor(private movieService: MovieService) {
-    // Configurar el Subject para manejar la búsqueda con debounce
+  constructor(private movieService: MovieService, private dialog: MatDialog) { // Inyecta MatDialog
     this.searchSubject
-      .pipe(
-        debounceTime(500), // Espera 500ms después de que el usuario deje de escribir
-        distinctUntilChanged() // Evita búsquedas duplicadas si no hay cambios
-      )
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: (searchTerm) => this.performSearch(searchTerm),
         error: (err) => console.error('Error al procesar la búsqueda:', err),
@@ -34,7 +32,7 @@ export class SearchMovieComponent {
 
   // Manejar cambios en el input
   onSearchInputChange(): void {
-    this.searchSubject.next(this.searchKeyword.trim()); // Emitir el valor del input al Subject
+    this.searchSubject.next(this.searchKeyword.trim());
   }
 
   // Realizar la búsqueda
@@ -54,6 +52,17 @@ export class SearchMovieComponent {
         console.error('Error al buscar películas:', err);
         this.error = 'Ocurrió un error al buscar películas.';
       },
+    });
+  }
+
+  // Abrir el modal con el tráiler
+  openMovieModal(movie: any): void {
+    this.dialog.open(MovieDetailModalComponent, {
+      width: '850px',
+      height: '600px',
+      //disableClose: true, 
+      maxWidth: 'none',
+      data: movie, // Envía los datos al modal
     });
   }
 }

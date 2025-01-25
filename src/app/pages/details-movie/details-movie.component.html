@@ -1,19 +1,32 @@
-<div *ngIf="movie; else loading" class="container mx-auto px-4 py-8">
-  <div class="flex flex-col md:flex-row items-center gap-8">
+<div *ngIf="movie; else loading" class="bg-black text-white px-6 py-8">
+  <div class="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
     <!-- Imagen de la película -->
-    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title"
-      class="w-full md:w-1/3 rounded-lg shadow-lg" />
+    <div class="flex-shrink-0">
+      <img 
+        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+        [alt]="movie.title" 
+        class="rounded-lg shadow-lg w-full md:w-auto"
+      />
+    </div>
 
     <!-- Detalles de la película -->
     <div class="flex flex-col gap-4">
-      <h1 class="text-3xl font-bold text-gray-800">{{ movie.title }}</h1>
-      <p class="text-gray-600">{{ movie.overview }}</p>
+      <h1 class="text-3xl font-bold">{{ movie.title }}</h1>
+      <p class="text-gray-400 leading-relaxed">{{ movie.overview }}</p>
       <p class="text-lg">
-        <strong class="font-semibold">Fecha de lanzamiento:</strong> {{ movie.release_date }}
+        <strong class="font-semibold text-gray-200">Fecha de lanzamiento:</strong> 
+        <span class="text-gray-400">{{ movie.release_date }}</span>
       </p>
       <p class="text-lg">
-        <strong class="font-semibold">Calificación:</strong> {{ movie.vote_average }}
+        <strong class="font-semibold text-gray-200">Calificación:</strong> 
+        <span class="text-yellow-500">{{ movie.vote_average | number: '1.1-1' }}</span>
       </p>
+      <div class="flex flex-wrap gap-2">
+        <span *ngFor="let genre of movie.genres" 
+              class="bg-gray-700 text-gray-200 py-1 px-3 rounded-full text-sm">
+          {{ genre.name }}
+        </span>
+      </div>
     </div>
   </div>
 </div>
